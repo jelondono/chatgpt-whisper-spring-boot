@@ -4,12 +4,12 @@ server:
     context-path: /
 
 openai-service:
-  api-key: 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
+  api-key: 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
   gpt-model: gpt-3.5-turbo
   audio-model: whisper-1
   http-client:
-    read-timeout: 3000
-    connect-timeout: 3000
+    read-timeout: 20000
+    connect-timeout: 20000
   urls:
     base-url: https://api.openai.com/v1
     chat-url: /chat/completions
@@ -23,6 +23,10 @@ logging:
 spring:
   jackson:
     default-property-inclusion: NON_NULL
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
 
 management:
   endpoints:

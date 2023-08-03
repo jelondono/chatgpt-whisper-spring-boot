@@ -1,5 +1,6 @@
 package com.github.javapuzzle.service.openaiclient.restcontroller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.github.javapuzzle.service.openaiclient.model.request.TranscriptionRequest;
 import com.github.javapuzzle.service.openaiclient.model.response.ChatGPTResponse;
 import com.github.javapuzzle.service.openaiclient.model.request.ChatRequest;
@@ -29,4 +30,9 @@ public class OpenAIClientController {
     public WhisperTranscriptionResponse createTranscription(@ModelAttribute TranscriptionRequest transcriptionRequest){
         return openAIClientService.createTranscription(transcriptionRequest);
     }
+    @PostMapping(value = "/analyzeMedicalTranscription", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public JsonNode analyzeMedicalTranscription(@RequestBody TranscriptionRequest medicalTranscription){
+        return openAIClientService.learnListingsAndAnalyzeTranscription(medicalTranscription.getTranscript());
+    }
+
 }

@@ -15,4 +15,5 @@ import java.io.Serializable;
 public class TranscriptionRequest implements Serializable {
 
     private MultipartFile file;
+    private String transcript;
 }
